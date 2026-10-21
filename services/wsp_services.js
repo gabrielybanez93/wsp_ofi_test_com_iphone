@@ -28,10 +28,19 @@ async function sendTextMessage(to, text) {
 
   const url = `${BASE_URL}/${phoneNumberId}/messages`;
 
+  // Dentro de sendTextMessage, antes de construir el payload:
+let numeroDestino = to;
+
+// Ajuste específico para Argentina en modo de prueba:
+// Meta recibe "549..." pero la lista de permitidos espera "54..." (sin el 9)
+if (numeroDestino.startsWith('549')) {
+  numeroDestino = '54' + numeroDestino.slice(3);
+}
+
   const payload = {
     messaging_product: 'whatsapp',
     recipient_type: 'individual',
-    to,
+    to: numeroDestino,
     type: 'text',
     text: { body: text },
   };
