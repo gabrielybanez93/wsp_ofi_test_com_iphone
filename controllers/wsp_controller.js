@@ -5,6 +5,7 @@
 // ─────────────────────────────────────────────────────────────
 
 //const { sendTextMessage } = require('../services/wsp_services');
+const { sendTextMessage } = require('../services/wsp_services');
 
 // ── GET /webhook → Verificación con Meta ──
 // Meta envía 3 query params: hub.mode, hub.verify_token, hub.challenge
@@ -49,7 +50,7 @@ async function receiveMessage(req, res) {
     console.log(`📩 Mensaje recibido de ${from}: "${text}"`);
 
     // 🎯 Hito 2: le respondemos al cliente
-    //await sendTextMessage(from, 'Hola, este mensaje fue enviado desde mi aplicación Node.js 🚀');
+    await sendTextMessage(from, 'Hola, este mensaje fue enviado desde mi aplicación Node.js 🚀');
 
   } catch (error) {
     console.error('❌ Error procesando webhook:', error.message);
